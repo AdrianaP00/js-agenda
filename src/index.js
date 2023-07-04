@@ -12,7 +12,7 @@ do {
 
     switch (menuChoice) {
         case '1': insert();
-
+            
             break;
 
         case '2': show();
@@ -32,17 +32,14 @@ do {
 } while (menuChoice != 'x');
 
 
-function show() {
-    agenda.forEach(contact => {
-        console.log("---");
-        showElement(contact)
-    });
-}
+function person(name, surname, phoneNumber) {
+    this.name = name;
+    this.surname = surname;
+    this.phoneNumber = phoneNumber;
 
-function showElement(contact) {
-    Object.keys(agenda).forEach(field => {
-        console.log(contact[field])
-    })
+    this.greet = function () {
+        console.log(`You have inserted ${name} ${surname} and your number is ${phoneNumber}`)
+    }
 }
 
 function insert() {
@@ -56,14 +53,18 @@ function insert() {
     } else { }
 }
 
-function person(name, surname, phoneNumber) {
-    this.name = name;
-    this.surname = surname;
-    this.phoneNumber = phoneNumber;
 
-    this.greet = function () {
-        console.log(`You have inserted ${name} ${surname} and your number is ${phoneNumber}`)
-    }
+function show() {
+    agenda.forEach(contact => {
+        console.log("---");
+        showElement(contact)
+    });
+}
+
+function showElement(contact) {
+    Object.keys(agenda).forEach(field => {
+        console.log(contact[field])
+    })
 }
 
 function change() {
@@ -97,7 +98,7 @@ function findContact() {
         case 2: let searchSurname = prompt(`insert surname`)
             for (let i = 0; i >= agenda.length; i++) {
 
-                if (searchName == agenda[i].surname) {
+                if (searchSurname == agenda[i].surname) {
                     showElement(agenda[i]);
                 }
             }
@@ -105,7 +106,7 @@ function findContact() {
         case 3: let searchPhoneNumber = prompt(`insert phone number `)
         for (let i = 0; i >= agenda.length; i++){
             
-            if (searchName == agenda[i].phoneNumber) {
+            if (searchPhoneNumber == agenda[i].phoneNumber) {
                 showElement(agenda[i]);
             }}
                 break;
@@ -116,7 +117,7 @@ function findContact() {
 
 
 function changeContactField(contact, field) {
-    contact[field] = newValue
+    contact[field] = prompt(``)
 }
 
 function modify() {
